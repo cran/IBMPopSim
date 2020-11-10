@@ -10,6 +10,9 @@ precomp <- function(vignette_name, extension) {
             "<embed src=",
             "```{r, echo=FALSE, fig.align='center'}\nknitr::include_graphics(")
   gsub_file(vignette_Rmd,
+            "<img src=",
+            "```{r, echo=FALSE, fig.align='center'}\nknitr::include_graphics(")
+  gsub_file(vignette_Rmd,
             paste0(".", extension, "[^>]*/>"),
             paste0(".", extension, "\")\n```"))
 }
@@ -25,7 +28,7 @@ precomp("IBMPopSim_interaction", "png")
 
 images <- list.files("figure/") #[grep(".pdf", list.files("figure/"))]
 file.move(paste0("figure/", images),
-          destinations = "./vignettes/figure/",
+          destinations = "./vignettes/",
           overwrite = TRUE)
 
 #rm_path_figure <- function(vignette_name, extension) {
