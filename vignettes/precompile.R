@@ -8,10 +8,10 @@ precomp <- function(vignette_name, extension) {
               output = vignette_Rmd, envir = globalenv())
   gsub_file(vignette_Rmd,
             "<embed src=",
-            "```{r, echo=FALSE, fig.align='center'}\nknitr::include_graphics(")
+            "\n```{r, echo=FALSE, fig.align='center'}\nknitr::include_graphics(")
   gsub_file(vignette_Rmd,
             "<img src=",
-            "```{r, echo=FALSE, fig.align='center'}\nknitr::include_graphics(")
+            "\n```{r, echo=FALSE, fig.align='center'}\nknitr::include_graphics(")
   gsub_file(vignette_Rmd,
             paste0(".", extension, "[^>]*/>"),
             paste0(".", extension, "\")\n```"))
@@ -31,9 +31,14 @@ file.move(paste0("figure/", images),
           destinations = "./vignettes/",
           overwrite = TRUE)
 
-#rm_path_figure <- function(vignette_name, extension) {
-#  vignette_Rmd = paste0("vignettes/", vignette_name, ".Rmd")
-#  gsub_file(vignette_Rmd, '"figure/', '"')
-#}
+rm_path_figure <- function(vignette_name, extension) {
+  vignette_Rmd = paste0("vignettes/", vignette_name, ".Rmd")
+  gsub_file(vignette_Rmd, '"figure/', '"')
+}
 
-#rm_path_figure("IBMPopSim")
+rm_path_figure("IBMPopSim")
+rm_path_figure("IBMPopSim_cpp")
+rm_path_figure("IBMPopSim_human_pop")
+rm_path_figure("IBMPopSim_human_pop_IMD")
+rm_path_figure("IBMPopSim_insurance_portfolio")
+rm_path_figure("IBMPopSim_interaction")
