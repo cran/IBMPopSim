@@ -1,32 +1,38 @@
+# vignettes/[name].Rmd are created from vignettes/[name].Rmd.orig
+# To extract R code from vignettes/[name].Rmd.orig run
+# knitr::purl(input = "vignettes/[name].Rmd.orig", output = "vignettes/[name].R",documentation = 0)
+
 library(knitr)
 library(xfun)
 library(filesstrings)
 
-precomp <- function(vignette_name, extension) {
+precomp <- function(vignette_name) {
   vignette_Rmd = paste0("vignettes/", vignette_name, ".Rmd")
   knitr::knit(input = paste0("vignettes/", vignette_name, ".Rmd.orig"),
               output = vignette_Rmd, envir = globalenv())
   gsub_file(vignette_Rmd,
             "<embed src=",
-            "\n```{r, echo=FALSE, fig.align='center'}\nknitr::include_graphics(")
+            "\n```{r, echo=FALSE, fig.align='center', out.width = '70%'}\nknitr::include_graphics(")
   gsub_file(vignette_Rmd,
             "<img src=",
-            "\n```{r, echo=FALSE, fig.align='center'}\nknitr::include_graphics(")
+            "\n```{r, echo=FALSE, fig.align='center', out.width = '70%'}\nknitr::include_graphics(")
   gsub_file(vignette_Rmd,
-            paste0(".", extension, "[^>]*/>"),
-            paste0(".", extension, "\")\n```"))
+            paste0(".png", "[^>]*/>"),
+            paste0(".png", "\")\n```"))
+  gsub_file(vignette_Rmd,
+            '<p class="caption">plot of chunk [a-zA-Z0-9_]+</p>',
+            "")
 }
 
-precomp("IBMPopSim", "pdf")
-precomp("IBMPopSim_cpp", "pdf")
-precomp("IBMPopSim_human_pop", "pdf")
-precomp("IBMPopSim_human_pop_IMD", "pdf")
-precomp("IBMPopSim_insurance_portfolio", "pdf")
+precomp("IBMPopSim")
+precomp("IBMPopSim_cpp")
+precomp("IBMPopSim_human_pop")
+precomp("IBMPopSim_human_pop_IMD")
+precomp("IBMPopSim_insurance_portfolio")
+precomp("IBMPopSim_interaction")
 
-# ATTENTION: pour la vignette "interaction" il faut mettre les images en .png
-precomp("IBMPopSim_interaction", "png")
+images <- list.files("figure/")
 
-images <- list.files("figure/") #[grep(".pdf", list.files("figure/"))]
 file.move(paste0("figure/", images),
           destinations = "./vignettes/",
           overwrite = TRUE)
