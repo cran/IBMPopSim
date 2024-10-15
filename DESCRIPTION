@@ -1,8 +1,8 @@
 Package: IBMPopSim
 Type: Package
 Title: Individual Based Model Population Simulation
-Version: 1.0.0
-Date: 2024-02-06
+Version: 1.1.0
+Date: 2024-10-10
 Authors@R: c(
     person('Daphné', 'Giorgi', role = c('aut', 'cre'), 
       email = 'daphne.giorgi@sorbonne-universite.fr'),
@@ -29,11 +29,11 @@ LinkingTo: Rcpp
 LazyData: true
 NeedsCompilation: yes
 VignetteBuilder: knitr
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
 Encoding: UTF-8
-Packaged: 2024-02-08 10:12:14 UTC; giorgi
+Packaged: 2024-10-11 09:02:56 UTC; giorgi
 Author: Daphné Giorgi [aut, cre],
   Sarah Kaakai [aut],
   Vincent Lemaire [aut]
 Repository: CRAN
-Date/Publication: 2024-02-09 00:30:35 UTC
+Date/Publication: 2024-10-15 14:20:07 UTC

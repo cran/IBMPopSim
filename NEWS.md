@@ -1,3 +1,14 @@
+# IBMPopSim 1.1.0
+
+## New features
+
+- Stop simulation when the population is extinct, unless there are entry events
+- Remove const from pop and I in intensity function template. The intensity function can modify the population and the individual.  
+- Change name of roxygen directives file, for having package documentation available in command line
+
+## Minor changes
+- Remove dependency on demography in insurance portfolio vignette
+
 # IBMPopSim 1.0.0
 
 ## New features
